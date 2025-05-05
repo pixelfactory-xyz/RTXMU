@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 include(CMakeDependentOption)
 
-if (NOT RTXMU_VULKAN_INCLUDE_DIR)
+if (NOT RTXMU_VULKAN_INCLUDE_DIR AND NOT TARGET Vulkan-Headers AND NOT TARGET Vulkan::Headers)
 	#find_package(Vulkan REQUIRED FATAL_ERROR)
 	find_package(Vulkan)
 	if (Vulkan_FOUND)
@@ -60,8 +60,24 @@ if (RTXMU_WITH_VULKAN)
 endif()
 
 add_library(rtxmu STATIC ${HEADER_FILES} ${SRC_FILES})
-
 target_include_directories(rtxmu PUBLIC include)
-target_include_directories(rtxmu PRIVATE ${RTXMU_VULKAN_INCLUDE_DIR})
+
+if (RTXMU_WITH_D3D12)
+	if (TARGET DirectX-Headers)
+		target_link_libraries(rtxmu PRIVATE DirectX-Headers)
+	elseif (TARGET Microsoft::DirectX-Headers)
+		target_link_libraries(rtxmu PRIVATE Microsoft::DirectX-Headers)
+	endif()
+endif()
+
+if (RTXMU_WITH_VULKAN)
+	if (TARGET Vulkan-Headers)
+		target_link_libraries(rtxmu PRIVATE Vulkan-Headers)
+	elseif (TARGET Vulkan::Headers)
+		target_link_libraries(rtxmu PRIVATE Vulkan::Headers)
+	else()
+		target_include_directories(rtxmu PRIVATE ${RTXMU_VULKAN_INCLUDE_DIR})
+	endif()
+endif()
 
 set_target_properties(rtxmu PROPERTIES LINKER_LANGUAGE CXX)
