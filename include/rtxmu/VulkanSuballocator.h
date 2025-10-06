@@ -94,7 +94,7 @@ namespace rtxmu
 
         uint32_t getAlignment() { return alignment; }
 
-        void allocate(vk::DeviceSize size, std::string name)
+        void allocate(vk::DeviceSize size, std::string /*name*/)
         {
             VkBlock::allocate(size, usageFlags, propertyFlags, heapFlags, alignment);
 
@@ -128,7 +128,7 @@ namespace rtxmu
 
         uint32_t getAlignment() { return alignment; }
 
-        void allocate(vk::DeviceSize size, std::string name)
+        void allocate(vk::DeviceSize size, std::string /*name*/)
         {
             VkBlock::allocate(size, usageFlags, propertyFlags, heapFlags, alignment);
 
@@ -162,7 +162,7 @@ namespace rtxmu
 
         uint32_t getAlignment() { return alignment; }
 
-        void allocate(vk::DeviceSize size, std::string name)
+        void allocate(vk::DeviceSize size, std::string /*name*/)
         {
             VkBlock::allocate(size, usageFlags, propertyFlags, heapFlags, alignment);
 
@@ -194,7 +194,7 @@ namespace rtxmu
 
         uint32_t getAlignment() { return alignment; }
 
-        void allocate(vk::DeviceSize size, std::string name)
+        void allocate(vk::DeviceSize size, std::string /*name*/)
         {
             VkBlock::allocate(size, usageFlags, propertyFlags, heapFlags, alignment);
 
@@ -226,7 +226,7 @@ namespace rtxmu
 
         uint32_t getAlignment() { return alignment; }
 
-        void allocate(vk::DeviceSize size, std::string name)
+        void allocate(vk::DeviceSize size, std::string /*name*/)
         {
             VkBlock::allocate(size, usageFlags, propertyFlags, heapFlags, alignment);
 
@@ -256,7 +256,7 @@ namespace rtxmu
 
         uint32_t getAlignment() { return alignment; }
 
-        void allocate(vk::DeviceSize size, std::string name)
+        void allocate(vk::DeviceSize size, std::string /*name*/)
         {
             auto queryPoolInfo = vk::QueryPoolCreateInfo()
                 .setQueryType(vk::QueryType::eAccelerationStructureCompactedSizeKHR)
